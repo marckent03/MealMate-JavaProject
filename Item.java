@@ -1,20 +1,17 @@
-public class Item {
-    private String name;
-    private int price;
-    private String type;
-
-    public Item(String name, int price, String type) {
+public abstract class Item {
+    protected String name;
+    protected String description;
+    protected int quantity;
+    
+    public Item(String name, String description, int quantity) {
         this.name = name;
-        this.price = price;
-        this.type = type;
+        this.description = description;
+        this.quantity = quantity;
     }
-
-    public String getName()  { return name; }
-    public int getPrice()    { return price; }
-    public String getType()  { return type; }
-
-    @Override
-    public String toString() {
-        return "[" + type + "] " + name + " - " + price + " gold";
-    }
+    
+    public String getName() { return name; }
+    public String getDescription() { return description; }
+    public int getQuantity() { return quantity; }
+    
+    public abstract void use(Player player);
 }

@@ -1,16 +1,26 @@
 public class Potion extends Item {
-
-    private int healAmount;
-
-    public Potion(String name, int price, int healAmount) {
-        super(name, price, "Potion");
-        this.healAmount = healAmount;
+    private int hpRestore;
+    private int mpRestore;
+    
+    public Potion(String name, String description, int quantity, int hpRestore, int mpRestore) {
+        super(name, description, quantity);
+        this.hpRestore = hpRestore;
+        this.mpRestore = mpRestore;
     }
-
-    public int getHealAmount() { return healAmount; }
-
-    public void use(String playerName) {
-        System.out.println(playerName + " used " + getName()
-                + " and restored " + healAmount + " HP!");
+    
+    public void addQuantity(int amount) {
+        this.quantity += amount;
+    }
+    
+    @Override
+    public void use(Player player) {
+        if (quantity > 0) {
+            player.heal(hpRestore);
+            player.restoreMana(mpRestore);
+            quantity--;
+            System.out.println("Used " + name + "!");
+            if (hpRestore > 0) System.out.println("Restored " + hpRestore + " HP!");
+            if (mpRestore > 0) System.out.println("Restored " + mpRestore + " MP!");
+        }
     }
 }
