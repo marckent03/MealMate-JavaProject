@@ -1,14 +1,23 @@
 public abstract class GameWorld {
+    protected String name;
+    protected String description;
 
-    protected String worldName;
-
-    public GameWorld(String worldName) {
-        this.worldName = worldName;
+    public GameWorld(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
-    public String getWorldName() {
-        return worldName;
+    public String getName() {
+        return name;
     }
 
-    public abstract void enterWorld(Player player);
+    public String getDescription() {
+        return description;
+    }
+
+    public abstract String[] getMinionNames();
+
+    public abstract String getMinionDialogue(int index);
+
+    public abstract String getBossDialogue(String playerName);
 }
